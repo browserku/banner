@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@browserku/uno': ^0.0.2
+  '@browserku/uno': ^0.0.3
   '@codemirror/commands': ^6.1.0
   '@codemirror/lang-html': ^6.1.0
   '@codemirror/lang-javascript': ^6.0.2
@@ -16,7 +16,6 @@ specifiers:
   dom-to-image-retina: ^1.0.2
   petite-vue: ^0.4.1
   prettier: ^2.6.2
-  prettier-plugin-svelte: ^2.7.0
   redent: ^4.0.0
   splitpanes: ^3.1.1
   tailwindcss: ^3.1.8
@@ -29,7 +28,7 @@ dependencies:
   petite-vue: 0.4.1
 
 devDependencies:
-  '@browserku/uno': 0.0.2
+  '@browserku/uno': 0.0.3
   '@codemirror/commands': 6.1.0
   '@codemirror/lang-html': 6.1.0
   '@codemirror/lang-javascript': 6.0.2
@@ -43,7 +42,6 @@ devDependencies:
   codemirror: 6.0.1
   dom-to-image-retina: 1.0.2
   prettier: 2.7.1
-  prettier-plugin-svelte: 2.7.0_prettier@2.7.1
   redent: 4.0.0
   splitpanes: 3.1.1
   tailwindcss: 3.1.8
@@ -81,8 +79,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@browserku/uno/0.0.2:
-    resolution: {integrity: sha512-qMTa1x5w3j17PrdEaHYQEv/xY/Icu53EkFM1/RsH9zaf9yqiJXAbPiCSLJbi174c+FyfYWrUBlkYKVWuYmmVlg==}
+  /@browserku/uno/0.0.3:
+    resolution: {integrity: sha512-KPDaTIBDKkhNsYBpx01nTgbcX16LY6zjEL7eRW9JbxXkpfq0kAKmmqzGu5JOfXv1ATxmXPGL2tS1WdLKRQ86XA==}
     dependencies:
       '@unocss/core': 0.45.12
       '@unocss/preset-attributify': 0.45.12
@@ -1026,15 +1024,6 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
-
-  /prettier-plugin-svelte/2.7.0_prettier@2.7.1:
-    resolution: {integrity: sha512-fQhhZICprZot2IqEyoiUYLTRdumULGRvw0o4dzl5jt0jfzVWdGqeYW27QTWAeXhoupEZJULmNoH3ueJwUWFLIA==}
-    peerDependencies:
-      prettier: ^1.16.4 || ^2.0.0
-      svelte: ^3.2.0
-    dependencies:
-      prettier: 2.7.1
     dev: true
 
   /prettier/2.7.1:
