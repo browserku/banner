@@ -16,8 +16,8 @@ const config = ref<Config>({});
 
 watchEffect(() => {
 	generatingCSS.value = true;
-	generate(template.value).then((result) => {
-		generatedCSS.value = result.css;
+	generate(template.value).then((css) => {
+		generatedCSS.value = css;
 		generatingCSS.value = false;
 	});
 });

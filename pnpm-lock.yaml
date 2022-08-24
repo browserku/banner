@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@browserku/uno': ^0.0.1
+  '@browserku/uno': ^0.0.2
   '@codemirror/commands': ^6.1.0
   '@codemirror/lang-html': ^6.1.0
   '@codemirror/lang-javascript': ^6.0.2
@@ -29,7 +29,7 @@ dependencies:
   petite-vue: 0.4.1
 
 devDependencies:
-  '@browserku/uno': 0.0.1
+  '@browserku/uno': 0.0.2
   '@codemirror/commands': 6.1.0
   '@codemirror/lang-html': 6.1.0
   '@codemirror/lang-javascript': 6.0.2
@@ -81,13 +81,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@browserku/uno/0.0.1:
-    resolution: {integrity: sha512-tbUrqRqKx6UQVpwy10o9Qsp8PJIUUrEdaz6/45mllRIS98bpd97ZwiEh48XdnFT/y/bSaaRNDDXGGz6o/6oFjA==}
+  /@browserku/uno/0.0.2:
+    resolution: {integrity: sha512-qMTa1x5w3j17PrdEaHYQEv/xY/Icu53EkFM1/RsH9zaf9yqiJXAbPiCSLJbi174c+FyfYWrUBlkYKVWuYmmVlg==}
     dependencies:
       '@unocss/core': 0.45.12
       '@unocss/preset-attributify': 0.45.12
       '@unocss/preset-uno': 0.45.12
-      '@unocss/preset-web-fonts': 0.45.12
     dev: true
 
   /@codemirror/autocomplete/6.1.0:
@@ -293,13 +292,6 @@ packages:
       '@unocss/core': 0.45.12
       '@unocss/preset-mini': 0.45.12
       '@unocss/preset-wind': 0.45.12
-    dev: true
-
-  /@unocss/preset-web-fonts/0.45.12:
-    resolution: {integrity: sha512-oBALsG7Q16R9v3mUMVQ9loaj68QlM3Ow1q+wytkCoc8FjAMP6fx6isuta+FBYpH/h8rpD4TVMKbImS+KLAczfA==}
-    dependencies:
-      '@unocss/core': 0.45.12
-      ohmyfetch: 0.4.18
     dev: true
 
   /@unocss/preset-wind/0.45.12:
@@ -540,10 +532,6 @@ packages:
 
   /defined/1.0.0:
     resolution: {integrity: sha512-Y2caI5+ZwS5c3RiNDJ6u53VhQHv+hHKwhkI1iHvceKUHw9Df6EK2zRLfjejRgMuCuxK7PfSWIMwWecceVvThjQ==}
-    dev: true
-
-  /destr/1.1.1:
-    resolution: {integrity: sha512-QqkneF8LrYmwATMdnuD2MLI3GHQIcBnG6qFC2q9bSH430VTCDAVjcspPmUaKhPGtAtPAftIUFqY1obQYQuwmbg==}
     dev: true
 
   /detective/5.2.1:
@@ -929,10 +917,6 @@ packages:
     hasBin: true
     dev: true
 
-  /node-fetch-native/0.1.4:
-    resolution: {integrity: sha512-10EKpOCQPXwZVFh3U1ptOMWBgKTbsN7Vvo6WVKt5pw4hp8zbv6ZVBZPlXw+5M6Tyi1oc1iD4/sNPd71KYA16tQ==}
-    dev: true
-
   /node-releases/2.0.6:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
     dev: true
@@ -950,15 +934,6 @@ packages:
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
-    dev: true
-
-  /ohmyfetch/0.4.18:
-    resolution: {integrity: sha512-MslzNrQzBLtZHmiZBI8QMOcMpdNFlK61OJ34nFNFynZ4v+4BonfCQ7VIN4EGXvGGq5zhDzgdJoY3o9S1l2T7KQ==}
-    dependencies:
-      destr: 1.1.1
-      node-fetch-native: 0.1.4
-      ufo: 0.8.5
-      undici: 5.10.0
     dev: true
 
   /path-parse/1.0.7:
@@ -1213,15 +1188,6 @@ packages:
     resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
-
-  /ufo/0.8.5:
-    resolution: {integrity: sha512-e4+UtA5IRO+ha6hYklwj6r7BjiGMxS0O+UaSg9HbaTefg4kMkzj4tXzEBajRR+wkxf+golgAWKzLbytCUDMJAA==}
-    dev: true
-
-  /undici/5.10.0:
-    resolution: {integrity: sha512-c8HsD3IbwmjjbLvoZuRI26TZic+TSEe8FPMLLOkN1AfYRhdjnKBU6yL+IwcSCbdZiX4e5t0lfMDLDCqj4Sq70g==}
-    engines: {node: '>=12.18'}
     dev: true
 
   /update-browserslist-db/1.0.5_browserslist@4.21.3:
