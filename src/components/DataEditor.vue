@@ -24,14 +24,7 @@ const parse = (objectLike: string) => {
 };
 
 watchEffect(() => {
-	value.value = stringifyObject(props.data, {
-		filter(input, prop) {
-			if (typeof prop === 'string' && prop.startsWith('$')) {
-				return false;
-			}
-			return true;
-		}
-	});
+	value.value = stringifyObject({ ...props.data });
 });
 
 const { el } = useCodeMirror({
