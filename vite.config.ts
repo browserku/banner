@@ -10,6 +10,7 @@ export default defineConfig({
 				index: path.resolve('index.html'),
 				iframe: path.resolve('iframe.html')
 			}
-		}
+		},
+		sourcemap: true
 	}
 });
