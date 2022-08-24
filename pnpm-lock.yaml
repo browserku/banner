@@ -8,6 +8,7 @@ specifiers:
   '@codemirror/view': ^6.2.0
   '@headlessui/vue': ^1.6.7
   '@types/dedent': ^0.7.0
+  '@types/node': ^18.7.13
   '@types/splitpanes': ^2.2.1
   '@types/stringify-object': ^4.0.1
   '@vitejs/plugin-vue': ^3.0.3
@@ -37,6 +38,7 @@ devDependencies:
   '@codemirror/view': 6.2.0
   '@headlessui/vue': 1.6.7_vue@3.2.37
   '@types/dedent': 0.7.0
+  '@types/node': 18.7.13
   '@types/splitpanes': 2.2.1
   '@types/stringify-object': 4.0.1
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
@@ -261,6 +263,10 @@ packages:
 
   /@types/dedent/0.7.0:
     resolution: {integrity: sha512-EGlKlgMhnLt/cM4DbUSafFdrkeJoC9Mvnj0PUCU7tFmTjMjNRT957kXCx0wYm3JuEq4o4ZsS5vG+NlkM2DMd2A==}
+    dev: true
+
+  /@types/node/18.7.13:
+    resolution: {integrity: sha512-46yIhxSe5xEaJZXWdIBP7GU4HDTG8/eo0qd9atdiL+lFpA03y8KS+lkTN834TWJj5767GbWv4n/P6efyTFt1Dw==}
     dev: true
 
   /@types/splitpanes/2.2.1:
