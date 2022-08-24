@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, onMounted, PropType, ref, watchEffect } from 'vue';
 import { Config, defaultConfig } from '../lib/config';
-import { Actions } from '../iframe';
+import type { Actions } from '../iframe';
 import { createWorker } from 'typed-worker';
-import stringifyObject from 'stringify-object';
+import stringifyObject from '../lib/stringify-object';
 import UrlDialog from './UrlDialog.vue';
 
 const props = defineProps({
@@ -15,7 +15,7 @@ const props = defineProps({
 		type: String,
 		required: true
 	},
-	data: {
+	templateData: {
 		type: Object as PropType<Record<string, any>>,
 		required: true
 	},
@@ -41,14 +41,19 @@ const wrapTemplate = (html: string) =>
 const imageUrl = computed(() => {
 	const query = new URLSearchParams({
 		template: wrapTemplate(props.html),
-		data: JSON.stringify(props.data)
+		data: JSON.stringify({ ...props.templateData })
 	});
 	return `https://api.browserku.com/banner?${query.toString()}`;
 });
 
 const jsCode = computed(() => {
 	return `
-const data = ${stringifyObject({ ...props.data }, { singleQuotes: false })}
+const data = ${stringifyObject(
+		{ ...props.templateData },
+		{
+			singleQuotes: false
+		}
+	)}
 const template = ${JSON.stringify(wrapTemplate(props.html))}
 
 const query = new URLSearchParams({
@@ -71,7 +76,7 @@ watchEffect(() => {
 	if (!target) return;
 
 	target.run('render', {
-		data: { ...props.data },
+		data: { ...props.templateData },
 		template: props.html,
 		css: props.css,
 		config: { ...props.config }

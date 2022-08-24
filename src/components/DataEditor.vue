@@ -2,11 +2,11 @@
 import { javascript } from '@codemirror/lang-javascript';
 import { minimalSetup } from 'codemirror';
 import { PropType, ref, watchEffect } from 'vue';
-import stringifyObject from 'stringify-object';
+import stringifyObject from '../lib/stringify-object';
 import { useCodeMirror } from '../lib/useCodeMirror';
 
 const props = defineProps({
-	data: {
+	templateData: {
 		type: Object as PropType<Record<string, any>>,
 		required: true
 	}
@@ -16,7 +16,7 @@ const emit = defineEmits<{
 	(event: 'update:data', data: Record<string, any>): void;
 }>();
 
-const value = ref('');
+const value = ref('{}');
 
 const parse = (objectLike: string) => {
 	const fn = new Function(`return ${objectLike.trim()}`);
@@ -24,13 +24,13 @@ const parse = (objectLike: string) => {
 };
 
 watchEffect(() => {
-	value.value = stringifyObject({ ...props.data });
+	value.value = stringifyObject({ ...(props.templateData || {}) });
 });
 
 const { el } = useCodeMirror({
 	value: value,
 	onChange(value) {
-		emit('update:data', parse(value));
+		emit('update:data', parse(value || '{}'));
 	},
 	extensions: [minimalSetup, javascript()]
 });

@@ -4,16 +4,14 @@ import { ref, watchEffect } from 'vue';
 import { generate } from '@browserku/uno';
 import TemplateEditor from './TemplateEditor.vue';
 import Preview from './Preview.vue';
-import { examples } from '../lib/examples';
+import { example } from '../lib/examples';
 import DataEditor from './DataEditor.vue';
 import type { Config } from '../lib/config';
-
-const example = examples[0];
 
 const template = ref(example.template);
 const generatedCSS = ref('');
 const generatingCSS = ref(false);
-const data = ref<Record<string, any>>(example.data);
+const templateData = ref<Record<string, any>>(example.data);
 const config = ref<Config>({});
 
 watchEffect(() => {
@@ -32,7 +30,7 @@ watchEffect(() => {
 				<Preview
 					:css="generatedCSS"
 					:html="template"
-					:data="data"
+					:templateData="templateData"
 					:generatingCSS="generatingCSS"
 					:config="config"
 				/>
@@ -43,7 +41,9 @@ watchEffect(() => {
 						<TemplateEditor :value="template" @update:value="(value) => (template = value)"
 					/></Pane>
 					<Pane :minSize="15"
-						><DataEditor :data="data" @update:data="(newData) => (data = newData)"
+						><DataEditor
+							:templateData="templateData"
+							@update:data="(newData) => (templateData = newData)"
 					/></Pane>
 				</Splitpanes>
 			</Pane>

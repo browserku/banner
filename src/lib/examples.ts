@@ -46,3 +46,5 @@ export const examples: {
 		}
 	}
 ];
+
+export const example = examples[0];
