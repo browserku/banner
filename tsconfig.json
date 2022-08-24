@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"alwaysStrict": true,
+		"jsx": "preserve",
+		"strictNullChecks": true,
+		"noUnusedLocals": true
+	}
+}
