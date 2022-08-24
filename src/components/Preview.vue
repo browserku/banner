@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, PropType, ref, watchEffect } from 'vue';
+import { computed, onMounted, PropType, Ref, ref, watchEffect } from 'vue';
 import { Config, defaultConfig } from '../lib/config';
 import type { Actions } from '../iframe';
 import { createWorker } from 'typed-worker';
@@ -83,12 +83,17 @@ watchEffect(() => {
 	});
 });
 
-const buttons = [
+const isDownloading = ref(false);
+
+const buttons: { text: string; onClick: () => void; isLoading?: Ref<boolean> }[] = [
 	{
 		text: 'Download',
 		async onClick() {
+			isDownloading.value = true;
 			await iframe.value?.run('download', undefined);
-		}
+			isDownloading.value = false;
+		},
+		isLoading: isDownloading
 	},
 	{
 		text: 'Get URL',
@@ -116,9 +121,30 @@ const buttons = [
 				:key="button.text"
 				type="button"
 				@click="button.onClick"
-				class="from-indigo-600 to-purple-600 bg-gradient-to-br text-white rounded-xl px-4 h-10 transition-transform active:translate-y-[2px]"
+				class="inline-flex items-center space-x-1 from-indigo-600 to-purple-600 bg-gradient-to-br text-white rounded-xl px-4 h-10 transition-transform active:translate-y-[2px]"
+				:class="[button.isLoading?.value && `opacity-50 cursor-not-allowed`]"
 			>
-				{{ button.text }}
+				<span v-if="button.isLoading?.value"
+					><svg
+						class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<circle
+							class="opacity-25"
+							cx="12"
+							cy="12"
+							r="10"
+							stroke="currentColor"
+							stroke-width="4"
+						></circle>
+						<path
+							class="opacity-75"
+							fill="currentColor"
+							d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+						></path></svg></span
+				><span>{{ button.text }}</span>
 			</button>
 		</div>
 	</div>
