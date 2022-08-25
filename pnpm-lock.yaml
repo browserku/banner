@@ -10,6 +10,7 @@ specifiers:
   '@types/dedent': ^0.7.0
   '@types/node': ^18.7.13
   '@types/prettier': ^2.7.0
+  '@types/prismjs': ^1.26.0
   '@types/splitpanes': ^2.2.1
   '@vitejs/plugin-vue': ^3.0.3
   autoprefixer: ^10.4.8
@@ -19,6 +20,7 @@ specifiers:
   floating-vue: 2.0.0-beta.19
   petite-vue: ^0.4.1
   prettier: ^2.7.1
+  prismjs: ^1.29.0
   redent: ^4.0.0
   splitpanes: ^3.1.1
   strip-css-comments: ^5.0.0
@@ -42,6 +44,7 @@ devDependencies:
   '@types/dedent': 0.7.0
   '@types/node': 18.7.13
   '@types/prettier': 2.7.0
+  '@types/prismjs': 1.26.0
   '@types/splitpanes': 2.2.1
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
   autoprefixer: 10.4.8
@@ -50,6 +53,7 @@ devDependencies:
   fflate: 0.7.3
   floating-vue: 2.0.0-beta.19_vue@3.2.37
   prettier: 2.7.1
+  prismjs: 1.29.0
   redent: 4.0.0
   splitpanes: 3.1.1
   strip-css-comments: 5.0.0
@@ -284,6 +288,10 @@ packages:
 
   /@types/prettier/2.7.0:
     resolution: {integrity: sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==}
+    dev: true
+
+  /@types/prismjs/1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
     dev: true
 
   /@types/splitpanes/2.2.1:
@@ -1073,6 +1081,11 @@ packages:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /prismjs/1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
     dev: true
 
   /queue-microtask/1.2.3:

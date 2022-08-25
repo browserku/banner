@@ -18,9 +18,8 @@ export const hoverExtension = (getTooltip: (word: string) => string | Promise<st
 			end,
 			above: true,
 			create(_view) {
-				let dom = document.createElement('div');
-				dom.className = `whitespace-pre max-h-[500px] overflow-auto p-1`;
-				dom.textContent = tooltip;
+				const dom = document.createElement('div');
+				dom.innerHTML = tooltip;
 				return { dom };
 			}
 		};

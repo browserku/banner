@@ -9,6 +9,7 @@ import { debounce } from '../lib/utils';
 import BoxHeader from './BoxHeader.vue';
 import { generate } from '@browserku/uno';
 import stripComment from 'strip-css-comments';
+import { highlightCSS } from '../lib/highlight';
 
 const props = defineProps({
 	value: {
@@ -29,7 +30,10 @@ const getTooltip = async (word: string) => {
 			preflights: false
 		}
 	});
-	return worker.run('format', { code: stripComment(css), type: 'css' });
+	if (!css) return '';
+	const result = highlightCSS(await worker.run('format', { code: stripComment(css), type: 'css' }));
+	console.log(result);
+	return `<pre class="p-1 whitespace-pre max-h-[500px] overflow-auto text-sm language-css">${result}</pre>`;
 };
 
 const { el } = useCodeMirror({
