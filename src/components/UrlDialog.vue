@@ -54,7 +54,7 @@ const copyUrl = () => {
 		<!-- Full-screen scrollable container -->
 		<div class="fixed inset-0 overflow-y-auto p-4">
 			<!-- Container to center the panel -->
-			<div class="flex min-h-full items-center justify-center -mt-32">
+			<div class="flex min-h-full items-center justify-center">
 				<!-- The actual dialog panel -->
 				<DialogPanel class="w-full max-w-xl rounded bg-white">
 					<DialogTitle class="flex h-14 items-center px-5 border-b font-medium text-xl"

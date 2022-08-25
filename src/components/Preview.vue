@@ -57,8 +57,8 @@ const data = ${stringifyObject(
 const template = ${JSON.stringify(wrapTemplate(props.html))}
 
 const query = new URLSearchParams({
-    template: wrapTemplate(props.html),
-    data: JSON.stringify(props.data)
+    template,
+    data: JSON.stringify(data)
 });
 const url = \`https://api.browserku.com/banner?\${query.toString()}\`
     `.trim();
