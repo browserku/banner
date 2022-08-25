@@ -32,7 +32,6 @@ const getTooltip = async (word: string) => {
 	});
 	if (!css) return '';
 	const result = highlightCSS(await worker.run('format', { code: stripComment(css), type: 'css' }));
-	console.log(result);
 	return `<pre class="p-1 whitespace-pre max-h-[500px] overflow-auto text-sm language-css">${result}</pre>`;
 };
 
