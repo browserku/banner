@@ -16,6 +16,7 @@ specifiers:
   codemirror: ^6.0.1
   dom-to-image-retina: ^1.0.2
   fflate: ^0.7.3
+  floating-vue: 2.0.0-beta.19
   petite-vue: ^0.4.1
   prettier: ^2.7.1
   redent: ^4.0.0
@@ -46,6 +47,7 @@ devDependencies:
   codemirror: 6.0.1
   dom-to-image-retina: 1.0.2
   fflate: 0.7.3
+  floating-vue: 2.0.0-beta.19_vue@3.2.37
   prettier: 2.7.1
   redent: 4.0.0
   splitpanes: 3.1.1
@@ -191,6 +193,16 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@floating-ui/core/0.3.1:
+    resolution: {integrity: sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==}
+    dev: true
+
+  /@floating-ui/dom/0.1.10:
+    resolution: {integrity: sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==}
+    dependencies:
+      '@floating-ui/core': 0.3.1
+    dev: true
 
   /@headlessui/vue/1.6.7_vue@3.2.37:
     resolution: {integrity: sha512-5sTCBpkUoFE7zhANn/6Z+pf3PUA7MD6BBaTsJcQybq9E4fnNiMM9agOJI9meXbtcawE6Dm8EeB5A8HAJEnZCbQ==}
@@ -814,6 +826,16 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /floating-vue/2.0.0-beta.19_vue@3.2.37:
+    resolution: {integrity: sha512-kWP0/JZM6Cwg959SUnVURDXFFKstGZIXDZJ5Ey77HNOvQete0rJnLntklCJzvLnwla8S3WiApH/EjupxS5ICBg==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@floating-ui/dom': 0.1.10
+      vue: 3.2.37
+      vue-resize: 2.0.0-alpha.1_vue@3.2.37
+    dev: true
+
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
@@ -1238,6 +1260,14 @@ packages:
       rollup: 2.77.3
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vue-resize/2.0.0-alpha.1_vue@3.2.37:
+    resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.37
     dev: true
 
   /vue/2.7.10:

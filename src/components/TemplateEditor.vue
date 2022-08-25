@@ -36,7 +36,7 @@ const format = async () => {
 
 <template>
 	<div class="h-full flex flex-col">
-		<BoxHeader title="Vue template" :format="format" />
+		<BoxHeader title="Vue template" titleTip="Supports Tailwind/UnoCSS syntax" :format="format" />
 		<div class="h-box-body" ref="el"></div>
 	</div>
 </template>
