@@ -14,7 +14,7 @@ const props = defineProps({
 		<div class="px-5 flex items-center h-full text-xs justify-between">
 			<div class="flex items-center font-bold">
 				<span
-					>Banner desginer by
+					>Banner designer by
 					<a href="https://browserku.com" class="text-indigo-600" target="_blank"
 						>Browserku</a
 					></span
