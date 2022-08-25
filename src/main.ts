@@ -1,5 +1,6 @@
 import 'floating-vue/dist/style.css';
 import './css/tailwind.css';
+import './css/md.css';
 import 'splitpanes/dist/splitpanes.css';
 import { createApp } from 'vue';
 import FloatingVue from 'floating-vue';
