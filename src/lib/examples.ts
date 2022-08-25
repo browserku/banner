@@ -43,7 +43,7 @@ export const examples: {
 				'Amid budget cuts, restrictive curricula, and increasing threats to their safety, more and more teachers are opting to switch careers. The Onion asked teachers to explain why they are quitting their jobs, and this is what they said.',
 			author: 'The Onion',
 			avatar: 'https://cdn.jsdelivr.net/gh/egoist-bot/images@main/upic/nIib90.png',
-			bg: 'https://cdn.jsdelivr.net/gh/egoist-bot/images@main/upic/U5tMDX.png'
+			bg: 'https://cdn.jsdelivr.net/gh/egoist-bot/images@main/upic/Fsohqo.jpg'
 		}
 	}
 ];
