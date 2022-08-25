@@ -1,4 +1,4 @@
-import { Ref, ref, watchEffect } from 'vue';
+import { onMounted, Ref, ref, shallowRef, watchEffect } from 'vue';
 import { EditorView, minimalSetup } from 'codemirror';
 import { keymap } from '@codemirror/view';
 import { indentWithTab } from '@codemirror/commands';
@@ -16,25 +16,23 @@ const lightTheme = EditorView.theme(
 );
 
 export const useCodeMirror = (options: {
-	value: string | Ref<string>;
+	value: Ref<string>;
 	onChange: (value: string) => void;
 	extensions: any[];
 }) => {
 	const el = ref<HTMLDivElement | null>(null);
-	const view = ref<EditorView | null>(null);
-
-	const value = ref(options.value);
+	const view = shallowRef<EditorView | null>(null);
 
 	const handleUpdate = EditorView.updateListener.of((update) => {
 		const newValue = update.state.doc.toString();
 		options.onChange(newValue);
 	});
 
-	watchEffect(() => {
-		if (!el.value || view.value) return;
+	onMounted(() => {
+		if (!el.value) return;
 
 		view.value = new EditorView({
-			doc: value.value,
+			doc: options.value.value,
 			extensions: [
 				minimalSetup,
 				keymap.of([indentWithTab]),
@@ -51,15 +49,17 @@ export const useCodeMirror = (options: {
 		if (!view.value) return;
 
 		const currentValue = view.value.state.doc.toString();
-		if (options.value === currentValue) return;
+		if (options.value.value === currentValue) return;
 
-		view.value.state.update({
-			changes: {
-				from: 0,
-				to: view.value.state.doc.length,
-				insert: value.value
-			}
-		});
+		view.value.dispatch(
+			view.value.state.update({
+				changes: {
+					from: 0,
+					to: view.value.state.doc.length,
+					insert: options.value.value
+				}
+			})
+		);
 	});
 
 	return {

@@ -9,16 +9,18 @@ specifiers:
   '@headlessui/vue': ^1.6.7
   '@types/dedent': ^0.7.0
   '@types/node': ^18.7.13
+  '@types/prettier': ^2.7.0
   '@types/splitpanes': ^2.2.1
   '@vitejs/plugin-vue': ^3.0.3
   autoprefixer: ^10.4.8
   codemirror: ^6.0.1
   dom-to-image-retina: ^1.0.2
   petite-vue: ^0.4.1
-  prettier: ^2.6.2
+  prettier: ^2.7.1
   redent: ^4.0.0
   splitpanes: ^3.1.1
   tailwindcss: ^3.1.8
+  tempura: ^0.4.0
   typed-worker: ^1.0.2
   typescript: ^4.7.4
   vite: ^3.0.9
@@ -36,6 +38,7 @@ devDependencies:
   '@headlessui/vue': 1.6.7_vue@3.2.37
   '@types/dedent': 0.7.0
   '@types/node': 18.7.13
+  '@types/prettier': 2.7.0
   '@types/splitpanes': 2.2.1
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
   autoprefixer: 10.4.8
@@ -45,6 +48,7 @@ devDependencies:
   redent: 4.0.0
   splitpanes: 3.1.1
   tailwindcss: 3.1.8
+  tempura: 0.4.0
   typed-worker: 1.0.2
   typescript: 4.7.4
   vite: 3.0.9
@@ -260,6 +264,10 @@ packages:
 
   /@types/node/18.7.13:
     resolution: {integrity: sha512-46yIhxSe5xEaJZXWdIBP7GU4HDTG8/eo0qd9atdiL+lFpA03y8KS+lkTN834TWJj5767GbWv4n/P6efyTFt1Dw==}
+    dev: true
+
+  /@types/prettier/2.7.0:
+    resolution: {integrity: sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==}
     dev: true
 
   /@types/splitpanes/2.2.1:
@@ -1153,6 +1161,11 @@ packages:
       resolve: 1.22.1
     transitivePeerDependencies:
       - ts-node
+    dev: true
+
+  /tempura/0.4.0:
+    resolution: {integrity: sha512-ghCAK7t3Yuy40NUA/pmS1aDY8M5MfZT4+S465S8YvwwDdgk3jLm/5BGwtMG/rMICDYY8T7Owe1qm91ArBOKd6w==}
+    engines: {node: '>=10'}
     dev: true
 
   /to-fast-properties/2.0.0:

@@ -11,7 +11,7 @@ import type { Config } from '../lib/config';
 const template = ref(example.template);
 const generatedCSS = ref('');
 const generatingCSS = ref(false);
-const templateData = ref<Record<string, any>>(example.data);
+const stringifiedData = ref<string>(JSON.stringify(example.data, null, 2));
 const config = ref<Config>({});
 
 watchEffect(() => {
@@ -59,7 +59,7 @@ watchEffect(() => {
 				<Preview
 					:css="generatedCSS"
 					:html="template"
-					:templateData="templateData"
+					:data="stringifiedData"
 					:generatingCSS="generatingCSS"
 					:config="config"
 				/>
@@ -71,8 +71,8 @@ watchEffect(() => {
 					/></Pane>
 					<Pane :minSize="15"
 						><DataEditor
-							:templateData="templateData"
-							@update:data="(newData) => (templateData = newData)"
+							:value="stringifiedData"
+							@update:value="(value) => (stringifiedData = value)"
 					/></Pane>
 				</Splitpanes>
 			</Pane>

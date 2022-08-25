@@ -47,7 +47,7 @@ const copyUrl = () => {
 </script>
 
 <template>
-	<Dialog :open="props.isOpen" @close="closeDialog" class="relative z-50">
+	<Dialog :open="props.isOpen" class="relative z-50">
 		<!-- The backdrop, rendered as a fixed sibling to the panel container -->
 		<div class="fixed inset-0 bg-black/30" aria-hidden="true" />
 

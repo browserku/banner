@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tiny-button {
+	@apply border inline-flex px-2 h-5 items-center rounded-lg bg-white hover:bg-zinc-50;
+}

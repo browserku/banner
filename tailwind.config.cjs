@@ -2,7 +2,12 @@
 module.exports = {
 	content: ['./src/**/*.vue'],
 	theme: {
-		extend: {}
+		extend: {
+			height: {
+				'box-header': '30px',
+				'box-body': 'calc(100% - 30px)'
+			}
+		}
 	},
 	plugins: []
 };

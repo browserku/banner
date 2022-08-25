@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import { computed, onMounted, PropType, Ref, ref, watchEffect } from 'vue';
 import { Config, defaultConfig } from '../lib/config';
-import type { Actions } from '../iframe';
+import type { Actions as IframeActions } from '../iframe';
 import { createWorker } from 'typed-worker';
-import stringifyObject from '../lib/stringify-object';
 import UrlDialog from './UrlDialog.vue';
 
 const props = defineProps({
@@ -15,8 +14,8 @@ const props = defineProps({
 		type: String,
 		required: true
 	},
-	templateData: {
-		type: Object as PropType<Record<string, any>>,
+	data: {
+		type: String,
 		required: true
 	},
 	generatingCSS: {
@@ -31,7 +30,7 @@ const props = defineProps({
 const isUrlDialogOpen = ref(false);
 const el = ref<HTMLIFrameElement | null>(null);
 
-const iframe = ref<ReturnType<typeof createWorker<Actions>> | null>(null);
+const iframe = ref<ReturnType<typeof createWorker<IframeActions>> | null>(null);
 
 const wrapTemplate = (html: string) =>
 	`<div style="height:${props.config.height || defaultConfig.height}px;width:${
@@ -41,19 +40,14 @@ const wrapTemplate = (html: string) =>
 const imageUrl = computed(() => {
 	const query = new URLSearchParams({
 		template: wrapTemplate(props.html),
-		data: JSON.stringify({ ...props.templateData })
+		data: props.data
 	});
 	return `https://api.browserku.com/banner?${query.toString()}`;
 });
 
 const jsCode = computed(() => {
 	return `
-const data = ${stringifyObject(
-		{ ...props.templateData },
-		{
-			singleQuotes: false
-		}
-	)}
+const data = ${props.data}
 const template = ${JSON.stringify(wrapTemplate(props.html))}
 
 const query = new URLSearchParams({
@@ -67,16 +61,21 @@ const url = \`https://api.browserku.com/banner?\${query.toString()}\`
 onMounted(() => {
 	const iframeEl = el.value;
 	if (iframeEl) {
-		iframe.value = createWorker<Actions>(() => iframeEl);
+		iframe.value = createWorker<IframeActions>(() => iframeEl);
 	}
 });
+
+const parse = (value: string) => {
+	const fn = new Function(`return ${value.trim()}`);
+	return fn();
+};
 
 watchEffect(() => {
 	const target = iframe.value;
 	if (!target) return;
 
 	target.run('render', {
-		data: { ...props.templateData },
+		data: parse(props.data),
 		template: props.html,
 		css: props.css,
 		config: { ...props.config }

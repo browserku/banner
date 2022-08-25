@@ -1,41 +1,43 @@
 <script setup lang="ts">
 import { javascript } from '@codemirror/lang-javascript';
 import { minimalSetup } from 'codemirror';
-import { PropType, ref, watchEffect } from 'vue';
-import stringifyObject from '../lib/stringify-object';
+import { computed } from 'vue';
+import { useWorker } from '../lib/use-worker';
 import { useCodeMirror } from '../lib/useCodeMirror';
+import { debounce } from '../lib/utils';
+import BoxHeader from './BoxHeader.vue';
 
 const props = defineProps({
-	templateData: {
-		type: Object as PropType<Record<string, any>>,
+	value: {
+		type: String,
 		required: true
 	}
 });
 
 const emit = defineEmits<{
-	(event: 'update:data', data: Record<string, any>): void;
+	(event: 'update:value', value: string): void;
 }>();
 
-const value = ref('{}');
-
-const parse = (objectLike: string) => {
-	const fn = new Function(`return ${objectLike.trim()}`);
-	return fn();
-};
-
-watchEffect(() => {
-	value.value = stringifyObject({ ...(props.templateData || {}) });
-});
+const editorValue = computed(() => props.value);
 
 const { el } = useCodeMirror({
-	value: value,
-	onChange(value) {
-		emit('update:data', parse(value || '{}'));
-	},
+	value: editorValue,
+	onChange: debounce((value: string) => {
+		emit('update:value', value || '{}');
+	}, 250),
 	extensions: [minimalSetup, javascript()]
 });
+
+const worker = useWorker();
+const format = async () => {
+	const result = await worker.run('format', { code: editorValue.value, type: 'json' });
+	emit('update:value', result);
+};
 </script>
 
 <template>
-	<div ref="el" class="h-full"></div>
+	<div class="h-full">
+		<BoxHeader title="Data" :format="format" />
+		<div ref="el" class="h-box-body"></div>
+	</div>
 </template>

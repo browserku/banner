@@ -1,3 +1,4 @@
+{{#expect prod }}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,5 +9,13 @@
 	<body>
 		<div id="app"></div>
 		<script src="/src/main.ts" type="module"></script>
+		{{#if prod}}
+		<script
+			async
+			defer
+			data-website-id="0b93b410-c3ef-4310-80a2-280881a673b8"
+			src="https://umami.egoist.dev/umami.js"
+		></script>
+		{{/if}}
 	</body>
 </html>
