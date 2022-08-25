@@ -52,29 +52,31 @@ watch([template, config, stringifiedData], () => {
 <template>
 	<div class="h-screen flex flex-col">
 		<AppHeader :setIsHelpDialogOpen="setIsHelpDialogOpen" />
-		<Splitpanes class="default-theme h-full">
-			<Pane :minSize="20" :size="70" class="preview-pane">
-				<Preview
-					:css="generatedCSS"
-					:html="template"
-					:data="stringifiedData"
-					:generatingCSS="generatingCSS"
-					:config="config"
-				/>
-			</Pane>
-			<Pane :minSize="20" :size="30">
-				<Splitpanes horizontal>
-					<Pane :minSize="15">
-						<TemplateEditor :value="template" @update:value="(value) => (template = value)"
-					/></Pane>
-					<Pane :minSize="15"
-						><DataEditor
-							:value="stringifiedData"
-							@update:value="(value) => (stringifiedData = value)"
-					/></Pane>
-				</Splitpanes>
-			</Pane>
-		</Splitpanes>
+		<main class="h-app-body">
+			<Splitpanes class="default-theme">
+				<Pane :minSize="20" :size="70" class="preview-pane">
+					<Preview
+						:css="generatedCSS"
+						:html="template"
+						:data="stringifiedData"
+						:generatingCSS="generatingCSS"
+						:config="config"
+					/>
+				</Pane>
+				<Pane :minSize="20" :size="30">
+					<Splitpanes horizontal>
+						<Pane :minSize="15">
+							<TemplateEditor :value="template" @update:value="(value) => (template = value)"
+						/></Pane>
+						<Pane :minSize="15"
+							><DataEditor
+								:value="stringifiedData"
+								@update:value="(value) => (stringifiedData = value)"
+						/></Pane>
+					</Splitpanes>
+				</Pane>
+			</Splitpanes>
+		</main>
 	</div>
 	<HelpDialog :isOpen="isHelpDialogOpen" :setIsOpen="setIsHelpDialogOpen" />
 </template>

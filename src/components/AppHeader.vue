@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<header class="h-10 flex-shrink-0 border-b border-zinc-200">
+	<header class="h-app-header flex-shrink-0 border-b border-zinc-200">
 		<div class="px-5 flex items-center h-full text-xs justify-between">
 			<div class="flex items-center font-bold">
 				<span
