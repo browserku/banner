@@ -15,6 +15,7 @@ specifiers:
   autoprefixer: ^10.4.8
   codemirror: ^6.0.1
   dom-to-image-retina: ^1.0.2
+  fflate: ^0.7.3
   petite-vue: ^0.4.1
   prettier: ^2.7.1
   redent: ^4.0.0
@@ -44,6 +45,7 @@ devDependencies:
   autoprefixer: 10.4.8
   codemirror: 6.0.1
   dom-to-image-retina: 1.0.2
+  fflate: 0.7.3
   prettier: 2.7.1
   redent: 4.0.0
   splitpanes: 3.1.1
@@ -799,6 +801,10 @@ packages:
     resolution: {integrity: sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==}
     dependencies:
       reusify: 1.0.4
+    dev: true
+
+  /fflate/0.7.3:
+    resolution: {integrity: sha512-0Zz1jOzJWERhyhsimS54VTqOteCNwRtIlh8isdL0AXLo0g7xNTfTL7oWrkmCnPhZGocKIkWHBistBrrpoNH3aw==}
     dev: true
 
   /fill-range/7.0.1:

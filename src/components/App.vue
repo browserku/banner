@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Splitpanes, Pane } from 'splitpanes';
-import { ref, watchEffect } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 import { generate } from '@browserku/uno';
 import TemplateEditor from './TemplateEditor.vue';
 import Preview from './Preview.vue';
 import { example } from '../lib/examples';
 import DataEditor from './DataEditor.vue';
 import type { Config } from '../lib/config';
+import { atou, utoa } from '../lib/utils';
 
 const template = ref(example.template);
 const generatedCSS = ref('');
@@ -14,12 +15,32 @@ const generatingCSS = ref(false);
 const stringifiedData = ref<string>(JSON.stringify(example.data, null, 2));
 const config = ref<Config>({});
 
+onMounted(() => {
+	const str = location.hash.slice(1);
+	if (str) {
+		const data = JSON.parse(atou(str));
+		template.value = data.template;
+		stringifiedData.value = data.stringifiedData;
+		config.value = data.config;
+	}
+});
+
 watchEffect(() => {
 	generatingCSS.value = true;
 	generate(template.value).then((css) => {
 		generatedCSS.value = css;
 		generatingCSS.value = false;
 	});
+});
+
+watch([template, config, stringifiedData], () => {
+	location.hash = `#${utoa(
+		JSON.stringify({
+			template: template.value,
+			config: { ...config.value },
+			stringifiedData: stringifiedData.value
+		})
+	)}`;
 });
 </script>
 
