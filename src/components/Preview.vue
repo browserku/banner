@@ -40,7 +40,8 @@ const wrapTemplate = (html: string) =>
 const imageUrl = computed(() => {
 	const query = new URLSearchParams({
 		template: wrapTemplate(props.html),
-		data: props.data
+		data: props.data,
+		response: 'banner.url'
 	});
 	return `https://api.browserku.com/banner?${query.toString()}`;
 });
@@ -52,7 +53,8 @@ const template = ${JSON.stringify(wrapTemplate(props.html))}
 
 const query = new URLSearchParams({
     template,
-    data: JSON.stringify(data)
+    data: JSON.stringify(data),
+	response: 'banner.url'
 });
 const url = \`https://api.browserku.com/banner?\${query.toString()}\`
     `.trim();
