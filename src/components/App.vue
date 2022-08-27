@@ -30,7 +30,7 @@ const setIsHelpDialogOpen = (open: boolean) => (isHelpDialogOpen.value = open);
 const applySelectedExample = () => {
 	if (selectedExample.value) {
 		project.template = selectedExample.value.template;
-		project.stringifedData = JSON.stringify(selectedExample.value.data);
+		project.stringifedData = JSON.stringify(selectedExample.value.data, null, 2);
 		project.config = selectedExample.value.config || {};
 	}
 };
