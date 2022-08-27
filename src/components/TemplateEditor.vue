@@ -26,9 +26,7 @@ const worker = useWorker();
 
 const getTooltip = async (word: string) => {
 	const css = await generate(`<div class="${word}"></div>`, {
-		generate: {
-			preflights: false
-		}
+		preflights: false
 	});
 	if (!css) return '';
 	const result = highlightCSS(await worker.run('format', { code: stripComment(css), type: 'css' }));
