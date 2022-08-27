@@ -8,7 +8,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@browserku/uno": "^0.0.3",
+		"@browserku/uno": "^0.0.4",
 		"@codemirror/commands": "^6.1.0",
 		"@codemirror/lang-html": "^6.1.0",
 		"@codemirror/lang-javascript": "^6.0.2",

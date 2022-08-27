@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@browserku/uno': ^0.0.3
+  '@browserku/uno': ^0.0.4
   '@codemirror/commands': ^6.1.0
   '@codemirror/lang-html': ^6.1.0
   '@codemirror/lang-javascript': ^6.0.2
@@ -35,7 +35,7 @@ dependencies:
   petite-vue: 0.4.1
 
 devDependencies:
-  '@browserku/uno': 0.0.3
+  '@browserku/uno': 0.0.4
   '@codemirror/commands': 6.1.0
   '@codemirror/lang-html': 6.1.0
   '@codemirror/lang-javascript': 6.0.2
@@ -93,8 +93,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@browserku/uno/0.0.3:
-    resolution: {integrity: sha512-KPDaTIBDKkhNsYBpx01nTgbcX16LY6zjEL7eRW9JbxXkpfq0kAKmmqzGu5JOfXv1ATxmXPGL2tS1WdLKRQ86XA==}
+  /@browserku/uno/0.0.4:
+    resolution: {integrity: sha512-4JDaKSD4/qklhNZv7QWvu/Oe38DZ92beoH819RlvMQDTogXhmuWSLnKjzdf5i6YNLhluSEmAgmLt2PRuMjsMuw==}
     dependencies:
       '@unocss/core': 0.45.12
       '@unocss/preset-attributify': 0.45.12
