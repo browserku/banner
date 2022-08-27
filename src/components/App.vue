@@ -1,51 +1,70 @@
 <script setup lang="ts">
 import { Splitpanes, Pane } from 'splitpanes';
-import { onMounted, ref, watch, watchEffect } from 'vue';
+import { computed, onMounted, reactive, ref, watch, watchEffect } from 'vue';
 import { generate } from '@browserku/uno';
 import AppHeader from './AppHeader.vue';
 import TemplateEditor from './TemplateEditor.vue';
 import Preview from './Preview.vue';
-import { example } from '../lib/examples';
+import { examples } from '../lib/examples';
 import DataEditor from './DataEditor.vue';
 import type { Config } from '../lib/config';
 import { atou, utoa } from '../lib/utils';
 import HelpDialog from './HelpDialog.vue';
 
-const template = ref(example.template);
+const selectedExampleName = ref(examples[0].name);
+
+const selectedExample = computed(() => examples.find((e) => e.name === selectedExampleName.value));
+
+const project = reactive<{ template: string; stringifedData: any; config: Config }>({
+	template: '',
+	stringifedData: '{}',
+	config: {}
+});
+
 const generatedCSS = ref('');
 const generatingCSS = ref(false);
-const stringifiedData = ref<string>(JSON.stringify(example.data, null, 2));
-const config = ref<Config>({});
 
 const isHelpDialogOpen = ref(false);
 const setIsHelpDialogOpen = (open: boolean) => (isHelpDialogOpen.value = open);
 
+const applySelectedExample = () => {
+	if (selectedExample.value) {
+		project.template = selectedExample.value.template;
+		project.stringifedData = JSON.stringify(selectedExample.value.data);
+		project.config = selectedExample.value.config || {};
+	}
+};
+
 onMounted(() => {
+	applySelectedExample();
 	const str = location.hash.slice(1);
 	if (str) {
-		const data = JSON.parse(atou(str));
-		template.value = data.template;
-		stringifiedData.value = data.stringifiedData;
-		config.value = data.config;
+		const urlData = JSON.parse(atou(str));
+		project.template = urlData.template;
+		project.stringifedData = urlData.stringifiedData;
+		project.config = urlData.config;
 	}
+	watch([project], () => {
+		location.hash = `#${utoa(
+			JSON.stringify({
+				template: project.template,
+				config: { ...project.config },
+				stringifiedData: project.stringifedData
+			})
+		)}`;
+	});
+
+	watch([selectedExample], () => {
+		applySelectedExample();
+	});
 });
 
 watchEffect(() => {
 	generatingCSS.value = true;
-	generate(template.value).then((css) => {
+	generate(project.template).then((css) => {
 		generatedCSS.value = css;
 		generatingCSS.value = false;
 	});
-});
-
-watch([template, config, stringifiedData], () => {
-	location.hash = `#${utoa(
-		JSON.stringify({
-			template: template.value,
-			config: { ...config.value },
-			stringifiedData: stringifiedData.value
-		})
-	)}`;
 });
 </script>
 
@@ -57,21 +76,25 @@ watch([template, config, stringifiedData], () => {
 				<Pane :minSize="20" :size="70" class="preview-pane">
 					<Preview
 						:css="generatedCSS"
-						:html="template"
-						:data="stringifiedData"
+						:html="project.template"
+						:data="project.stringifedData"
 						:generatingCSS="generatingCSS"
-						:config="config"
+						:config="project.config"
+						:selectedExampleName="selectedExampleName"
+						:updateSelectedExampleName="(name) => (selectedExampleName = name)"
 					/>
 				</Pane>
 				<Pane :minSize="20" :size="30">
 					<Splitpanes horizontal>
 						<Pane :minSize="15">
-							<TemplateEditor :value="template" @update:value="(value) => (template = value)"
+							<TemplateEditor
+								:value="project.template"
+								@update:value="(value) => (project.template = value)"
 						/></Pane>
 						<Pane :minSize="15"
 							><DataEditor
-								:value="stringifiedData"
-								@update:value="(value) => (stringifiedData = value)"
+								:value="project.stringifedData"
+								@update:value="(value) => (project.stringifedData = value)"
 						/></Pane>
 					</Splitpanes>
 				</Pane>

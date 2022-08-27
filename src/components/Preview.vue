@@ -3,7 +3,9 @@ import { computed, onMounted, PropType, Ref, ref, watchEffect } from 'vue';
 import { Config, defaultConfig } from '../lib/config';
 import type { Actions as IframeActions } from '../iframe';
 import { createWorker } from 'typed-worker';
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue';
 import UrlDialog from './UrlDialog.vue';
+import { examples } from '../lib/examples';
 
 const props = defineProps({
 	css: {
@@ -24,6 +26,14 @@ const props = defineProps({
 	config: {
 		type: Object as PropType<Config>,
 		default: {}
+	},
+	selectedExampleName: {
+		type: String,
+		required: true
+	},
+	updateSelectedExampleName: {
+		type: Function as PropType<(name: string) => void>,
+		required: true
 	}
 });
 
@@ -106,17 +116,62 @@ const buttons: { text: string; onClick: () => void; isLoading?: Ref<boolean> }[]
 </script>
 
 <template>
-	<div class="flex flex-col space-y-8 justify-center items-center h-full">
+	<div class="flex flex-col justify-center items-center h-full">
 		<iframe
 			ref="el"
 			class="bg-white border-0"
 			src="/iframe.html"
 			:style="{
-				height: `${props.config.height || 320}px`,
-				width: `${props.config.height || 640}px`
+				height: `${props.config.height || defaultConfig.height}px`,
+				width: `${props.config.width || defaultConfig.width}px`
 			}"
 		/>
-		<div class="flex space-x-3">
+		<div class="mt-8">
+			<div class="relative">
+				<Listbox
+					:model-value="selectedExampleName"
+					@update:model-value="(value) => props.updateSelectedExampleName(value)"
+				>
+					<ListboxButton
+						class="inline-flex items-center space-x-3 bg-zinc-200 text-zinc-800 rounded-xl px-4 h-10"
+						><span>{{ selectedExampleName }}</span>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="1.5"
+							stroke="currentColor"
+							class="w-5 h-5 text-zinc-400"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+							/>
+						</svg>
+					</ListboxButton>
+					<ListboxOptions class="absolute min-w-full pt-1">
+						<div class="bg-white rounded-lg shadow-lg whitespace-nowrap">
+							<div class="text-zinc-400 px-3 text-xs font-medium border-b py-2">
+								Choose a template:
+							</div>
+							<div class="py-1">
+								<ListboxOption
+									v-for="example in examples"
+									:key="example.name"
+									:value="example.name"
+								>
+									<div class="cursor-pointer px-3 py-1 hover:bg-zinc-100">
+										{{ example.name }}
+									</div>
+								</ListboxOption>
+							</div>
+						</div>
+					</ListboxOptions>
+				</Listbox>
+			</div>
+		</div>
+		<div class="flex space-x-3 mt-3">
 			<button
 				v-for="button in buttons"
 				:key="button.text"
